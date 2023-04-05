@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Module;
-use Validator;
 use App\Traits\SearchableTrait;
+use Illuminate\Support\Facades\Validator;
 
 class ModuleController extends Controller
 {

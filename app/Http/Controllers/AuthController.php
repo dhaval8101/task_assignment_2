@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Hash;
+use Illuminate\Support\Facades\Hash;
 use App\Models\PasswordReset;
 use Illuminate\Support\Facades\Validator;
 use App\Notifications\ResetPasswordNotification;
@@ -22,7 +22,7 @@ class AuthController extends Controller
             "lastname" => "required",
             "phonenumber" => "required",
             "email" => "required",
-            "password" => "required",
+            "password" => "required||min:8",
             'roles' => 'required|array',
             'roles.*' => 'exists:roles,id'
         );
@@ -51,6 +51,15 @@ class AuthController extends Controller
     //email and password valid
     public function login(Request $request)
     {
+        $rules = array(
+        "email" => "required",
+        "password" => "required||min:8",
+    );
+    $validator = Validator::make($request->all(), $rules);
+    if ($validator->fails()) {
+
+        return $validator->errors();
+    } 
         $request->only('email', 'password');
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = User::where('email', $request->email)->first();

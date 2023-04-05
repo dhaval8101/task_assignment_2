@@ -5,19 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Permission;
 use Illuminate\Http\Request;
 use App\Models\Role;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use App\Traits\SearchableTrait;
 class RoleController extends Controller
 {
     use SearchableTrait;
-
-    // public function index()
-    // {
-    //     $roles = Role::with('permissions')->get();
-
-    //     return response()->json($roles);
-    // }
-
     /**
      * Store a newly created resource in storage.
      */
