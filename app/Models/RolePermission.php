@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-    class RolePermission extends Model
+class RolePermission extends Model
 {
 
     public function role()
@@ -15,11 +15,4 @@ use Illuminate\Database\Eloquent\Model;
     {
         return $this->belongsTo(Permission::class);
     }
-
 }
-
-
-    
-
-
-

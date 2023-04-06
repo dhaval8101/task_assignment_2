@@ -10,10 +10,10 @@ use Illuminate\Database\Eloquent\Model;
 class ModelPermission extends Model
 {
     protected $fillable = [
-        'module_id', 
-        'delete_access', 
-        'edit_access', 
-        'add_access', 
+        'module_id',
+        'delete_access',
+        'edit_access',
+        'add_access',
         'view_access'
     ];
 
@@ -22,4 +22,3 @@ class ModelPermission extends Model
         return $this->belongsTo(Permission::class);
     }
 }
-

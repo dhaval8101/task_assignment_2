@@ -8,17 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class employee extends Model
 {
     use HasFactory;
-
-
     protected $fillable = [
         'name',
         'description',
         'salary'
-        
     ];
-    protected $hidden=[
- 'updated_at',
- 'created_at'
+    protected $hidden = [
+        'updated_at',
+        'created_at'
 
     ];
 }

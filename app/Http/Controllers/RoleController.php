@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Permission;
 use Illuminate\Http\Request;
 use App\Models\Role;
 use Illuminate\Support\Facades\Validator;
 use App\Traits\SearchableTrait;
+
 class RoleController extends Controller
 {
     use SearchableTrait;
@@ -20,24 +20,18 @@ class RoleController extends Controller
             'description' => 'required',
             'permissions' => 'required|array|exists:permissions,id',
         ];
-
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
             return errorResponse($validator->errors(), 422);
         }
-
         $role = new Role();
         $role->name = $request->name;
         $role->description = $request->description;
         $role->save();
-
         $role->permissions()->sync($request->input('permissions'));
-
         return successResponse($role, 'Role created successfully.');
     }
-
-
     /**
      * Display the specified resource.
      */
@@ -49,8 +43,6 @@ class RoleController extends Controller
         }
         return successResponse($role, 'Roles show successfully');
     }
-
-
     /**
      * Update the specified resource in storage.
      */
@@ -60,14 +52,11 @@ class RoleController extends Controller
         $role->name = $request->name;
         $role->description = $request->description;
         $role->save();
-
-
         if (!$role) {
             return errorResponse('User not found', 404);
         }
         return successResponse($role, 'roles update successfully');
     }
-
     /**
      * Remove the specified resource from storage.
      */
@@ -77,11 +66,11 @@ class RoleController extends Controller
         $role->delete();
         return successResponse('roles delete successfully');
     }
-//search and pagination
+    //search and pagination
     public function index()
     {
         $query = Role::query();
-        $searchable_fields = ['name']; 
+        $searchable_fields = ['name'];
         $data = $this->serching($query, $searchable_fields);
         return response()->json([
             'success' => true,

@@ -8,7 +8,6 @@ use App\Models\Permission;
 use App\Traits\SearchableTrait;
 use Illuminate\Support\Facades\Validator;
 
-
 class PermissionController extends Controller
 {
     use SearchableTrait;
@@ -64,12 +63,12 @@ class PermissionController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for update the specified resource.
      */
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-    
+
             'name' => 'required',
             'description' => 'required',
             'modules' => 'required|array',
@@ -78,10 +77,10 @@ class PermissionController extends Controller
             "modules.*.edit_access" => "required|boolean",
             "modules.*.view_access" => "required|boolean",
             "modules.*.delete_access" => "required|boolean",
-        ]); if ($validator->fails()) {
+        ]);
+        if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-        // find the record to update
         $permission = Permission::find($id);
         if (!$permission) {
             return response()->json(['error' => 'Record not found'], 404);

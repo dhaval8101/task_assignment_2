@@ -1,13 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\employee;
 use Illuminate\Support\Facades\Validator;
+
 class EmployeeController extends Controller
 {
-
-    //store data
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
         $rules = array(
@@ -21,7 +24,9 @@ class EmployeeController extends Controller
         $employee = employee::create($request->all());
         return successResponse($employee, 'employee data');
     }
-    //show data
+    /**
+     * Display the specified resource.
+     */
     public function show($id)
     {
         $employee = employee::find($id);
@@ -30,7 +35,9 @@ class EmployeeController extends Controller
         }
         return successResponse($employee, 'employee data show successfully');
     }
-    //update data
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request)
     {
         $employee = employee::find($request->id);
@@ -43,7 +50,9 @@ class EmployeeController extends Controller
         }
         return successResponse($employee, 'employee data update successfully');
     }
-    //delete data
+    /**
+     * Remove the specified resource from storage.
+     */
     public function delete($id)
     {
         $employee = employee::find($id);

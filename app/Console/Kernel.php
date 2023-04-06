@@ -1,10 +1,11 @@
 <?php
 
+
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-
+use App\Jobs\UpdateUserIsNewStatus;
 class Kernel extends ConsoleKernel
 {
     /**
@@ -12,7 +13,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->job(new UpdateUserIsNewStatus)->dailyAt('01:15');
+        // $schedule->job(new UpdateUserIsNewStatus)->everyFiveMinutes(5);
     }
 
     /**

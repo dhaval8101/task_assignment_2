@@ -8,7 +8,6 @@ use App\Models\PasswordReset;
 use Illuminate\Support\Facades\Validator;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Password;
 use App\Traits\SearchableTrait;
 
 class AuthController extends Controller
@@ -38,14 +37,14 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->save();
-        $token = $user->createToken('Token')->plainTextToken;
+        // $token = $user->createToken('Token')->plainTextToken;
         $user->roles()->sync($request->input('roles'));
 
         // return the user and API token as a response
-        return response()->json([
-            'user' => $user,
-            'token' => $token
-        ], 201);
+            // return response()->json([
+            //     'user' => $user,
+            //     'token' => $token
+            // ], 201);
         return successResponse($user, 'user data');
     }
     //email and password valid

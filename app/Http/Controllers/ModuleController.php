@@ -29,7 +29,6 @@ class ModuleController extends Controller
         $module->save();
         return successResponse($module, 'module created successfully');
     }
-
     /**
      * Display the specified resource.
      */
@@ -41,7 +40,6 @@ class ModuleController extends Controller
         }
         return successResponse($module, 'module show successfully');
     }
-
     /**
      * Update the specified resource in storage.
      */

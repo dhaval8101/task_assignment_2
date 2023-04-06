@@ -48,7 +48,6 @@ class UserController extends Controller
         $user->delete();
         return successResponse('user delete successfully');
     }
-
     //Logout user
     public function logout(Request $request)
     {

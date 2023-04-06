@@ -11,13 +11,13 @@ class Module extends Model
 
     use HasFactory;
 
-    protected $fillable = ['name','description'];
+    protected $fillable = [
+        'name',
+        'description'
+    ];
     protected $hidden = [
         'updated_at',
         'created_at'
 
     ];
-
-
 }
-
